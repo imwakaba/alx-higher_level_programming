@@ -1,13 +1,9 @@
 #!/usr/bin/node
 
-let number = parseInt(process.argv[2]);
-
-function factorial (num) {
-  if (num > 1) {
-    return num * factorial(num - 1);
-  } else {
-    return 1;
-  }
+function factorial (arg) {
+  if (!arg) return 1;
+  return arg * factorial(arg - 1);
 }
 
-console.log(factorial(number));
+const arg = parseInt(process.argv[2], 10);
+console.log(factorial(arg));

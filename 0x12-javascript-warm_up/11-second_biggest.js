@@ -1,29 +1,17 @@
 #!/usr/bin/node
 
-let second = parseInt(process.argv[3]);
+let numbers = process.argv.slice(2);
+numbers = numbers.map(number => parseInt(number, 10));
 
-if (isNaN(second)) {
-  console.log('0');
-  process.exit();
-}
+let biggest = 0;
+let secondBiggest = 0;
 
-let first = parseInt(process.argv[2]);
-
-if (first < second) {
-  let temp = first;
-  first = second;
-  second = temp;
-}
-
-for (let i = 4; i < process.argv.length; i++) {
-  let next = parseInt(process.argv[i]);
-  if (next > second) {
-    if (next > first) {
-      second = first;
-      first = next;
-    } else {
-      second = next;
-    }
+for (const num of numbers) {
+  if (num >= biggest) {
+    secondBiggest = biggest;
+    biggest = num;
   }
+  if (num < biggest && num >= secondBiggest) secondBiggest = num;
 }
-console.log(second);
+
+console.log(secondBiggest);
